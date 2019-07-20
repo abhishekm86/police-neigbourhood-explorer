@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/police-neigbourhood-explorer/static/css/main.2928c90d.chunk.css",
+    "main.js": "/police-neigbourhood-explorer/static/js/main.1ea76376.chunk.js",
+    "main.js.map": "/police-neigbourhood-explorer/static/js/main.1ea76376.chunk.js.map",
+    "runtime~main.js": "/police-neigbourhood-explorer/static/js/runtime~main.13cc8161.js",
+    "runtime~main.js.map": "/police-neigbourhood-explorer/static/js/runtime~main.13cc8161.js.map",
+    "static/css/2.7fad5d03.chunk.css": "/police-neigbourhood-explorer/static/css/2.7fad5d03.chunk.css",
+    "static/js/2.7437546e.chunk.js": "/police-neigbourhood-explorer/static/js/2.7437546e.chunk.js",
+    "static/js/2.7437546e.chunk.js.map": "/police-neigbourhood-explorer/static/js/2.7437546e.chunk.js.map",
+    "index.html": "/police-neigbourhood-explorer/index.html",
+    "precache-manifest.80dc43bfd07858eda385e753b02ec92c.js": "/police-neigbourhood-explorer/precache-manifest.80dc43bfd07858eda385e753b02ec92c.js",
+    "service-worker.js": "/police-neigbourhood-explorer/service-worker.js",
+    "static/css/2.7fad5d03.chunk.css.map": "/police-neigbourhood-explorer/static/css/2.7fad5d03.chunk.css.map",
+    "static/css/main.2928c90d.chunk.css.map": "/police-neigbourhood-explorer/static/css/main.2928c90d.chunk.css.map",
+    "static/media/AppSearch.scss": "/police-neigbourhood-explorer/static/media/main-banner.ce6d299b.jpg",
+    "static/media/main-logo.svg": "/police-neigbourhood-explorer/static/media/main-logo.f62d0a75.svg",
+    "static/media/no-events.png": "/police-neigbourhood-explorer/static/media/no-events.6db902d3.png"
+  }
+}
