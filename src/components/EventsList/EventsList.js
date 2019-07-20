@@ -3,7 +3,6 @@ import EventCard from '../../components/EventCard/EventCard';
 import NoEvents from '../../components/NoEvents/NoEvents';
 import './EventsList.scss';
 class EventsList extends Component{
-	
 	render(){
 		const { eventsData, selectedForce, selectedNBD } =  this.props;
 		const dataLength = eventsData.length;
@@ -17,7 +16,6 @@ class EventsList extends Component{
 								eventsData.map( ( event, index ) =>  <EventCard index={index} key={index + event.title.replace(/\s/g, '-')} { ...event } /> )
 							}
 						</div>
-						
 					</React.Fragment>
 				);
 			} else{
