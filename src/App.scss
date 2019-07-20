@@ -35,8 +35,13 @@ $sides: (top, bottom, left, right);
 		cursor: pointer;
 		transition: background 450ms ease-in-out;
 		text-transform: uppercase;
+		background-color: #DDD;
 		&--link{
 			border: 0 none;
+		}
+		&:active,
+		&:focus{
+			outline: none;
 		}
 	}
 	&__container {
@@ -53,5 +58,12 @@ $sides: (top, bottom, left, right);
 	}
 	&__hidden{
 		display: none;
+	}
+}
+@media only screen and (max-width: 1199px) {
+	.App{
+		&__btn{
+			height: 42px;
+		}
 	}
 }

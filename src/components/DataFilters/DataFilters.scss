@@ -68,3 +68,18 @@
 		}
 	}
 }
+@media only screen and (max-width: 599px) {
+	.DataFilters{
+		padding: 15px 0;
+		.flexbox{
+			flex-direction: column;
+		}
+		&__filters{
+			margin-right: 0 !important;
+		}
+		hr{
+			margin-top: 0 !important;
+			margin-bottom: 15px !important;
+		}
+	}	
+}

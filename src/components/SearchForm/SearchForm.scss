@@ -11,6 +11,7 @@
 		font-size: 1.5rem;
 		will-change: font-size;
 		font-weight: 500;
+		line-height: 1.4
 	}
 }
 .uninstantiated{
@@ -33,5 +34,64 @@
 			letter-spacing: 0.1rem;
 			font-weight: 500;
 		}
+	}
+}
+@media only screen and (max-width: 1199px) {
+	.SearchForm{
+		width: 100%;
+		p.tagline{
+			margin-bottom: 15px;
+			font-size: 2rem;
+		}
+		.App__btn{
+  			width: 100%;
+  			margin-bottom: 15px;
+  		}
+		& > div.flexbox{
+			flex-wrap: wrap;
+			:nth-child(2){
+				margin-right: 0;
+			}
+		}
+	}
+  	.uninstantiated{
+	  	.SearchForm{
+	  		width: 100%;
+	  		p.tagline {
+	  			font-size: 2.5rem;
+	  		}
+	  		.App__btn{
+	  			width: 100%;
+	  		}
+	  		& > div.flexbox{
+	  			select{
+	  				margin-right: 0;	
+	  			}
+	  		}
+	  	}
+  	}
+}
+@media only screen and (max-width: 599px) {
+	.SearchForm{
+		p.tagline{
+			font-size: 1.438rem;
+		}
+		& > div.flexbox{
+  			select{
+  				width: 100%;
+  				margin-right: 0;	
+  			}
+  		}
+	}
+	.uninstantiated .SearchForm{
+		padding: 15px;
+		p.tagline{
+			font-size: 1.75rem;
+		}
+	}
+}
+@media only screen and (max-height: 549px){
+	.uninstantiated .SearchForm{
+		transform: none;
 	}
 }

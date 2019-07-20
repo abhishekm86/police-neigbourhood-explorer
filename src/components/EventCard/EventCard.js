@@ -21,7 +21,7 @@ class EventCard extends Component{
 	render(){
 		const { title, description, address, type, start_date, end_date, index } = this.props;
 		return (
-			<div className={ ( (index + 1) % 4 === 0 ) ? "EventCard" : "EventCard m-r-30"}>
+			<div className={ /*( (index + 1) % 4 === 0 ) ? */"EventCard"/* : "EventCard m-r-30"*/}>
 				<p className="EventCard__tag">{type}</p>
 				<h3 className="EventCard__title">{title}</h3>
 				<p className="EventCard__location">

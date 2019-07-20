@@ -12,3 +12,13 @@
 		}
 	}
 }
+@media only screen and (max-width: 599px) {
+	.AppHeader{
+		&__logo{
+			svg, img{
+				max-width: 320px;
+				width: 100%;
+			}
+		}
+	}
+}

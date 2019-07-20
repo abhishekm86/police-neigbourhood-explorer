@@ -1,4 +1,9 @@
 .FilterControls {
 	margin-left: auto;
-	padding-top: 32px;	
+	padding-top: 32px;
+}
+@media only screen and (max-width: 1199px){
+	.FilterControls{
+		padding-top: 0;
+	}
 }

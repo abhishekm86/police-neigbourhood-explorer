@@ -104,7 +104,7 @@ class SearchForm extends Component{
 		return (
 			<form onSubmit={ this.handleSubmit } className="SearchForm">
 	            <p className="tagline">{tagline}</p>
-	            <div className="flex">
+	            <div className="flexbox">
 	              <UserSelect
 	                placeholder='Please select a force...'
 	                selection ={frmForce}

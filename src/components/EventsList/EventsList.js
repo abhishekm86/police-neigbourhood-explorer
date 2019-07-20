@@ -12,9 +12,12 @@ class EventsList extends Component{
 				return (
 					<React.Fragment>
 						<h4 className='EventsList__title m-b-30'>Showing <b>{dataLength}</b> event{dataLength===1?'':'s'} in <b>{selectedNBD}</b> from <b>{selectedForce}</b></h4>
-						{
-							eventsData.map( ( event, index ) =>  <EventCard index={index} key={index + event.title.replace(/\s/g, '-')} { ...event } /> )
-						}
+						<div className='EventsList__cardscontainer flexbox flex-wrap'>
+							{
+								eventsData.map( ( event, index ) =>  <EventCard index={index} key={index + event.title.replace(/\s/g, '-')} { ...event } /> )
+							}
+						</div>
+						
 					</React.Fragment>
 				);
 			} else{
@@ -23,7 +26,7 @@ class EventsList extends Component{
 		})(this);
 		return(
 			<main className='EventsList'>
-				<div className="App__container flexbox flex-wrap">{ listing }</div>
+				<div className="App__container">{ listing }</div>
 			</main>
 		)
 	}

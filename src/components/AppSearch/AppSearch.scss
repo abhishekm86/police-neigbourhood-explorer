@@ -35,4 +35,24 @@
 }
 .uninstantiated .AppSearch {
 	height: calc(100vh - 65px);
+	min-height: 400px;
+}
+@media only screen and (max-width: 1199px) {
+	.AppSearch{
+		height: auto;
+		.App__container{
+			flex-direction: column;
+		}
+	}
+	.uninstantiated .AppSearch {
+		height: calc(100vh - 65px);
+		.App__container{
+			flex-direction: row;
+		}
+	}
+}
+@media only screen and (max-width: 599px) {
+	.AppSearch{
+		padding: 15px 0;
+	}
 }
