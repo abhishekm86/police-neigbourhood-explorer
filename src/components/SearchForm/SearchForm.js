@@ -74,13 +74,10 @@ class SearchForm extends Component{
 				frmNBD: '',
 				frmForce: selection['frmForce']
 			}, function(){
-				this.props.setForceChoice(this.getHRText(this.state.frmForce, this.state.dataForce))
 				this.getNBDData()
 			});
 		} else {
-			this.setState(selection, function(){
-				this.props.setNBDChoice(this.getHRText(this.state.frmNBD, this.state.dataNBD))
-			});
+			this.setState(selection);
 		}
 	}
 	handleSubmit ( evt ) {
@@ -88,26 +85,28 @@ class SearchForm extends Component{
 		const {frmForce, frmNBD} = this.state;
 		if(frmForce.length > 0 && frmNBD.length > 0){
 			this.props.togglePreloader(true);
+			this.props.resetFilters();
 			this.getDataFromAPI(
         		this.apiEndpoints.primary + this.apiEndpoints.events.replace(/{force}/, frmForce).replace(/{nbd}/, frmNBD),
         		(resp) => {
-        			this.props.setEventsData(resp, () => {
+        			this.props.setEventsData(resp, () => {        				
+						this.props.setForceChoice(this.getHRText(this.state.frmForce, this.state.dataForce))
+						this.props.setNBDChoice(this.getHRText(this.state.frmNBD, this.state.dataNBD))
         				this.props.togglePreloader(false);
         			});
         		});
 		}
 	}
 	render(){
-		const {
-			tagline
-		} = this.props;
-
+		const {tagline } = this.props;
+		const {frmForce, frmNBD} = this.state;
 		return (
 			<form onSubmit={ this.handleSubmit } className="SearchForm">
 	            <p className="tagline">{tagline}</p>
 	            <div className="flex">
 	              <UserSelect
 	                placeholder='Please select a force...'
+	                selection ={frmForce}
 	                name = 'frmForce'
 	                updateSelection = {this.updateSelection}
 	                data = { this.state.dataForce }
@@ -116,6 +115,7 @@ class SearchForm extends Component{
 	                emptyMessage = 'Getting forces data...' />
 	              <UserSelect
 	                placeholder='Please select a neighbourhood...'
+	                selection ={frmNBD}
 	                name = 'frmNBD'
 	                updateSelection = {this.updateSelection}
 	                data = { this.state.dataNBD }

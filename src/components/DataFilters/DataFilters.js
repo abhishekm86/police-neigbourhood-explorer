@@ -4,10 +4,10 @@ class DataFilters extends Component{
 	constructor( props ){
 		super(props);
 		this.state = {
-			filterByType: '',
-			filterByDate: '',
-			filterStartDate: '',
-			filterEndDate: ''
+			filterByType: (props.filters.filterByType) ? props.filters.filterByType : '',
+			filterByDate: (props.filters.filterByDate) ? props.filters.filterByDate : '',
+			filterStartDate: (props.filters.filterStartDate) ? props.filters.filterStartDate : '',
+			filterEndDate: (props.filters.filterEndDate) ? props.filters.filterEndDate : '',
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.applyFilters = this.applyFilters.bind(this);

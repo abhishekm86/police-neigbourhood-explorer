@@ -17,10 +17,10 @@ class UserSelect extends Component{
 		});
 	}
 	render(){
-		const {name, placeholder, data, dataKeyName, dataValueName, emptyMessage } = this.props;
+		const {name, placeholder, data, dataKeyName, dataValueName, emptyMessage, selection } = this.props;
 		const placeholderOption = ( !!data && data.length > 0 ) ? <option value='' disabled='disabled'>{placeholder}</option> : null;
 		return (
-			<select value = { this.state[name] } name = {name} id = {name} onChange ={ this.handleChange } className='UserSelect'disabled = { ( !!data && data.length > 0 ) ? false : true } >
+			<select value = { selection } name = {name} id = {name} onChange ={ this.handleChange } className='UserSelect'disabled = { ( !!data && data.length > 0 ) ? false : true } >
 				{ placeholderOption }
 				{
 					( !!data && data.length > 0 ) ?

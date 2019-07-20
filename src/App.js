@@ -166,7 +166,14 @@ class App extends Component{
     )
   }
   render(){
-    const { dataEvents, preloading, eventTypes, selectedForce, selectedNBD, filterApplied } = this.state;
+    const { 
+      dataEvents, 
+      preloading, 
+      eventTypes, 
+      selectedForce, 
+      selectedNBD, 
+      filterApplied,
+      filters } = this.state;
     return (
     <div className={ (!!dataEvents) ? 'App instantiated' : 'App uninstantiated'} >
       <Preloader preloading = { preloading } />
@@ -181,6 +188,7 @@ class App extends Component{
         setApplyFilters = { this.setApplyFilters }
         resetFilters = {this.resetFilters}
         filterApplied = { filterApplied }
+        filters = { filters }
       />
       {
         (!!dataEvents) ?
