@@ -1,0 +1,37 @@
+.SearchForm{
+	font-family: 'Roboto', sans-serif;
+	.App__btn {
+		background-color: #6d985c;
+		color: #FFF
+	}
+	p.tagline {
+		color: #FFF;
+		margin-bottom: 8px;
+		margin-left: 5px;
+		font-size: 1.5rem;
+		will-change: font-size;
+		font-weight: 500;
+	}
+}
+.uninstantiated{
+	.SearchForm{
+		background-color: rgba(0, 0, 0, 0.8);
+		padding: 30px;
+		border-radius: 5px;
+		transform: translateY(-10vh);
+		width: 80%;
+		p.tagline {
+			color: #FFF;
+			margin-bottom: 8px;
+			margin-left: 5px;
+			font-size: 3rem;
+			margin-bottom: 20px;
+		}
+		.App__btn {
+			height: 50px;
+			font-size: 1.125rem;
+			letter-spacing: 0.1rem;
+			font-weight: 500;
+		}
+	}
+}

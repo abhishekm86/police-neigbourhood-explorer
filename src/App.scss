@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap);
+@import './assets/styles/flexbox';
+a {
+	text-decoration: none;
+	color: inherit;
+}
+*{
+	box-sizing: border-box;
+}
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100);
+$sides: (top, bottom, left, right);
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+  
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+.App {
+	font-family: 'Roboto', sans-serif;
+	&__btn {
+		font: 1rem 'Roboto', sans-serif;
+		height: 36px;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		margin-right: 15px;
+		padding: 0 15px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background 450ms ease-in-out;
+		text-transform: uppercase;
+		&--link{
+			border: 0 none;
+		}
+	}
+	&__container {
+		max-width: 1366px;
+		margin: 0 auto;
+		padding: 0 15px;
+	}
+	&__texthide {
+		font: 0/0 a;
+		color: transparent;
+		text-shadow: none;
+		background-color: transparent;
+		border: 0;
+	}
+	&__hidden{
+		display: none;
+	}
+}

@@ -1,0 +1,14 @@
+.AppHeader{
+	background-color: #000;
+	padding: 15px 0;
+	&__logo{
+		font-size: 0;	
+		a{
+			display: inline-block;
+		}
+		svg,img{
+			width: 320px;
+			height: auto;
+		}
+	}
+}

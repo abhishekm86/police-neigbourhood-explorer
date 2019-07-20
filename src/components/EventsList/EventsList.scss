@@ -1,0 +1,10 @@
+.EventsList{
+	padding: 30px;	
+	&__title{
+		width: 100%;
+		font-size: 1.25rem;
+		b{
+			font-weight: 500;
+		}
+	}
+}

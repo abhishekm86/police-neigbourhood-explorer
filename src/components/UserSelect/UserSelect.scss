@@ -1,0 +1,13 @@
+.UserSelect {
+	font: 1rem 'Roboto', sans-serif;
+	width: 300px;
+	margin-right: 15px;
+	height: 36px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.uninstantiated .UserSelect {
+	font-size: 1.375rem;
+	width: 40%;
+	height: 50px;
+}

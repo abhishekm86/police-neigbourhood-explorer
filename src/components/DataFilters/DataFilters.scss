@@ -1,0 +1,70 @@
+.DataFilters {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 100%;
+	background-color: rgba(255, 255, 255, 0.95);
+	z-index: 499;
+	padding: 30px 0;
+	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+	&__arrow{
+		position: absolute;
+		background: #fff;
+		top: 0;
+		right: 22.5vw;
+		&:after{
+			bottom: 100%;
+			left: 50%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+			border-color: rgba(255, 255, 255, 0);
+			border-bottom-color: #fff;
+			border-width: 10px;
+			margin-left: -10px;
+		}
+	}
+	&__filters{
+		min-width: 250px;
+	}
+	&__title{
+		font-size: 1.125rem;
+		font-weight: 500;
+	}
+	&__choices{
+		label {
+			display: inline-block;
+			cursor: pointer;
+			text-transform: capitalize;
+		}
+		input{
+			&[type='radio']{
+				margin-top: 0;
+				margin-bottom: 0;
+				margin-left: 0;
+				cursor: pointer;
+			}
+		}
+	}
+	&__btn--submit{
+		background-color: #6d985c; 
+		color: #FFF;
+	}
+	&__datewrap{
+		&label{
+			display: inline-block;
+			width: 80px;
+		}
+		input{
+			&[type='date']{
+				padding: 5px 8px;
+				font: .813rem 'Roboto', sans-serif;
+			}
+		}
+	}
+}

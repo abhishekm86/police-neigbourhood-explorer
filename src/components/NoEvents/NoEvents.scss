@@ -1,0 +1,12 @@
+.NoEvents{
+	width: 100%;
+	padding: 30px 0;
+	&__title{
+		font-size: 1.25rem;
+		font-weight: 500;
+	}
+	p{
+		line-height: 1.6;
+		font-size: 1.125rem
+	}
+}
