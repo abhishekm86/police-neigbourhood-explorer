@@ -17,7 +17,8 @@ class App extends Component{
       eventTypes: '',
       selectedForce: '',
       selectedNBD: '',
-      filterApplied: false
+      filterApplied: false,
+      init: false
     };
     this.togglePreloader = this.togglePreloader.bind(this);
     this.setEventsData = this.setEventsData.bind(this);
@@ -33,11 +34,11 @@ class App extends Component{
     neighbourhoods: '/{force}/neighbourhoods',
     events: '/{force}/{nbd}/events'
   };
-  getNewState( cst, root, key, value ) {
+  /*getNewState( cst, root, key, value ) {
     let clonedState = JSON.parse( JSON.stringify( cst[ root ] ) );
     clonedState[key] = value;
     return clonedState;
-  }
+  }*/
   togglePreloader( st ){
     this.setState({
       preloading: st
@@ -55,7 +56,8 @@ class App extends Component{
   }
   setEventsData ( data, cb ) {
     this.setState({
-      dataEvents: data
+      dataEvents: data,
+      init: true
     }, function(){
       this.setState(
         ( cst ) => ( {
@@ -173,9 +175,10 @@ class App extends Component{
       selectedForce, 
       selectedNBD, 
       filterApplied,
-      filters } = this.state;
+      filters,
+      init } = this.state;
     return (
-    <div className={ (!!dataEvents) ? 'App instantiated' : 'App uninstantiated'} >
+    <div className={ init ? 'App instantiated' : 'App uninstantiated'} >
       <Preloader preloading = { preloading } />
       <AppHeader />
       <AppSearch
