@@ -157,7 +157,7 @@ class SearchForm extends Component{
 	                dataKeyName = 'id'
 	                dataValueName = 'name'
 	                emptyMessage = 'Select a force to continue' />
-	              <button className="App__btn" type="submit">Search</button>
+	              <button className="App__btn App__btn--primary" type="submit">Search</button>
 	            </div>
           	</form>
 		);

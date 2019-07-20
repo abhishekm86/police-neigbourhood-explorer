@@ -134,7 +134,7 @@ class DataFilters extends Component{
 					</div>
 					<hr className='m-t-15 m-b-30' />
 					<button 
-						className="App__btn DataFilters__btn--submit" 
+						className="App__btn App__btn--primary" 
 						type="Submit"
 						onClick = {this.applyFilters}
 					>Apply Filters</button>

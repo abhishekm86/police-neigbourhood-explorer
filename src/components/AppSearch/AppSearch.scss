@@ -15,14 +15,6 @@
 		height: 100%;
 	}
 	.App__btn{
-		&:hover,
-		&--active{
-			background-color: #000;
-			color: #FFF;
-			svg, path{
-				fill: #FFF;
-			}
-		}
 		&:last-child {
 			margin-right: 0;
 		}

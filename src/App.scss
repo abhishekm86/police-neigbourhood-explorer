@@ -35,7 +35,18 @@ $sides: (top, bottom, left, right);
 		cursor: pointer;
 		transition: background 450ms ease-in-out;
 		text-transform: uppercase;
-		background-color: #DDD;
+		background-color: #EEE;
+		border: 0 none;
+		&:hover{
+			background-color: darken(#EEE, 15%);
+		}
+		&--primary{
+			background-color: #6d985c;
+			color: #FFF;
+			&:hover{
+				background-color: darken(#6d985c, 15%);
+			}
+		}
 		&--link{
 			border: 0 none;
 		}
