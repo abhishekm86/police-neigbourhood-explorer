@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import UserSelect from '../UserSelect/UserSelect';
+import Noty from 'noty';
+import 'noty/src/noty.scss';
+import 'noty/src/themes/mint.scss';
 import './SearchForm.scss';
 class SearchForm extends Component{
 	constructor(props){
@@ -28,11 +31,17 @@ class SearchForm extends Component{
 		fetch( url )
 			.then( resp => resp.json() )
 			.then( resp => {
-				if(typeof cb_success === 'function')
-					cb_success( resp );
-				else
-					return resp;
-			});
+					if(typeof cb_success === 'function')
+						cb_success( resp );
+					else
+						return resp;
+				}, error =>{
+					if(typeof cb_failure === 'function')
+						cb_failure( error );
+					else
+						return error;
+				}
+			);
 	}
 	apiEndpoints = {
 		primary: '//data.police.uk/api',
@@ -52,6 +61,14 @@ class SearchForm extends Component{
 				}, function () {
 					this.props.togglePreloader(false);
 				})
+			},
+			error => {
+				console.log(error);
+				new Noty({
+				    text: 'Error getting force list!<br/>Please check your internet connection or try again in sometime...',
+				    type: 'error',
+				}).show();
+				this.props.togglePreloader(false);
 			}
 		);
 	}
@@ -65,6 +82,14 @@ class SearchForm extends Component{
             }, function(){
             	this.props.togglePreloader(false);
             });
+          },
+          error => {
+          	console.log(error);
+			new Noty({
+			    text: 'Error getting list of neighbourhoods!<br/>Please check your internet connection or try again in sometime...',
+			    type: 'error',
+			}).show();
+          	this.props.togglePreloader(false);
           }
         );
   	}
@@ -95,7 +120,16 @@ class SearchForm extends Component{
 						this.props.setNBDChoice(this.getHRText(this.state.frmNBD, this.state.dataNBD))
         				this.props.togglePreloader(false);
         			});
-        		});
+        		},
+        		error => {
+		          	console.log(error);
+					new Noty({
+					    text: 'Error getting events!<br/>Please check your internet connection or try again in sometime...',
+					    type: 'error',
+					}).show();
+		          	this.props.togglePreloader(false);
+		          }
+    		);
 		}
 	}
 	render(){

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import 'reset-css';
-import './App.scss';
+import Moment from 'moment';
 import Preloader from './components/Preloader/Preloader';
 import AppHeader from './components/AppHeader/AppHeader';
 import AppSearch from './components/AppSearch/AppSearch';
 import EventsList from './components/EventsList/EventsList';
-import Moment from 'moment';
+import 'reset-css';
+import './App.scss';
 class App extends Component{
   constructor( props ){
     super(props);
@@ -71,7 +71,6 @@ class App extends Component{
   getEventsData ( returnBackup ) {
     return returnBackup ? this.state.preFilterDataEvents : this.state.dataEvents;
   }
-
   filterDataByDate( choice ) {
     console.log("filtering by", choice);
     const diff =  (choice === 'today') ? 0
@@ -158,7 +157,7 @@ class App extends Component{
         cb();
   }
   resetFilters ( cb ){
-    this.setState( 
+    this.setState(
       (cst) => ({
         dataEvents: cst.preFilterDataEvents,
         preFilterDataEvents: false,
@@ -168,12 +167,12 @@ class App extends Component{
     )
   }
   render(){
-    const { 
-      dataEvents, 
-      preloading, 
-      eventTypes, 
-      selectedForce, 
-      selectedNBD, 
+    const {
+      dataEvents,
+      preloading,
+      eventTypes,
+      selectedForce,
+      selectedNBD,
       filterApplied,
       filters,
       init } = this.state;

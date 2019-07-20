@@ -5,6 +5,7 @@
   "homepage": "http://abhishekm86.github.io/police-neigbourhood-explorer",
   "dependencies": {
     "moment": "^2.24.0",
+    "noty": "^3.2.0-beta",
     "react": "^16.8.6",
     "react-detect-offline": "^2.4.0",
     "react-dom": "^16.8.6",
