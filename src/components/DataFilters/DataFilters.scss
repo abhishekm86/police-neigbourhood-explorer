@@ -56,6 +56,9 @@
 			display: inline-block;
 			width: 80px;
 		}
+		.App__errormsg{
+			transform: translate(85px, -8px);
+		}
 		input{
 			&[type='date']{
 				padding: 5px 8px;

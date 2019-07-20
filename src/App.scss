@@ -70,6 +70,11 @@ $sides: (top, bottom, left, right);
 	&__hidden{
 		display: none;
 	}
+	&__errormsg{
+		color: #F00;
+		font-style: italic;
+		font-size: 0.75rem;
+	}
 }
 .noty_layout{
 	font-family: 'Roboto', sans-serif;

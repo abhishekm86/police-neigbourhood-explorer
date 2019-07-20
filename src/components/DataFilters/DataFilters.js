@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Moment from 'moment';
 import './DataFilters.scss';
 class DataFilters extends Component{
 	constructor( props ){
@@ -8,25 +9,54 @@ class DataFilters extends Component{
 			filterByDate: (props.filters.filterByDate) ? props.filters.filterByDate : '',
 			filterStartDate: (props.filters.filterStartDate) ? props.filters.filterStartDate : '',
 			filterEndDate: (props.filters.filterEndDate) ? props.filters.filterEndDate : '',
+			errorStartDate: false,
+			errorEndDate: false,
+			errorIncorrectEndDate: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.applyFilters = this.applyFilters.bind(this);
 	}
 	handleChange( evt ){
+		if(evt.target.name === 'filterStartDate' && evt.target.value.length > 0 )
+			this.setState({errorStartDate: false});
+		if(evt.target.name === 'filterEndDate' && evt.target.value.length > 0 ) {
+			this.setState({errorEndDate: false});
+		}
 		this.setState({
 			[evt.target.name] : evt.target.value
 		});
 	}
 	applyFilters( evt ) {
 		evt.preventDefault();
-		this.props.togglePreloader(true);
-		this.props.setApplyFilters( this.state, ()=>{
-			this.props.togglePreloader(false);
-			this.props.hideDataFilters();
-		} );
+		const { filterByDate, filterEndDate, filterStartDate } = this.state;
+		if( ( filterByDate === 'custom' ) && ( filterStartDate.length === 0 || filterEndDate.length === 0 || Moment(filterEndDate).diff(Moment(filterStartDate), 'days') < 0) ) {
+			if( filterStartDate.length === 0 ) 
+				this.setState({errorStartDate : true})
+			else
+				this.setState({errorStartDate : false});
+			if( filterEndDate.length === 0 ) 
+				this.setState({errorEndDate : true});
+			else
+				this.setState({errorEndDate : false});
+			if( Moment(filterEndDate).diff(Moment(filterStartDate), 'days') < 0 ){
+				this.setState({errorIncorrectEndDate: true});
+			}
+		} else {
+			this.setState({
+				errorStartDate : false,
+				errorEndDate: false,
+				errorIncorrectEndDate: false
+			});
+			this.props.togglePreloader(true);
+			this.props.setApplyFilters( this.state, ()=>{
+				this.props.togglePreloader(false);
+				this.props.hideDataFilters();
+			} );
+		}
 	}
 	render(){
 		const { closeFilterHandler, isOpen, typeFilters } = this.props;
+		const { errorStartDate, errorEndDate, errorIncorrectEndDate } = this.state;
 		return (
 			<section className= { !isOpen ? 'DataFilters App__hidden' : 'DataFilters' } >
 				<div className="App__container">
@@ -40,11 +70,11 @@ class DataFilters extends Component{
 											typeFilters.map( (type, index) =>
 												<li key={index+type} className='m-b-15'>
 													<label>
-														<input 
-															className='m-r-5' 
-															type="radio" 
-															name="filterByType" 
-															value={ type } 
+														<input
+															className='m-r-5'
+															type="radio"
+															name="filterByType"
+															value={ type }
 															checked= { this.state.filterByType === type}
 															onChange = { this.handleChange }
 														/> {type}
@@ -61,80 +91,83 @@ class DataFilters extends Component{
 							<ul className="DataFilters__choices">
 								<li className='m-b-15'>
 									<label>
-										<input 
-											type="radio" 
-											name="filterByDate" 
-											value='today' 
+										<input
+											type="radio"
+											name="filterByDate"
+											value='today'
 											onChange = { this.handleChange }
 										/> Today
 									</label>
 								</li>
 								<li className='m-b-15'>
 									<label>
-										<input 
-											type="radio" 
-											name="filterByDate" 
-											value='week' 
+										<input
+											type="radio"
+											name="filterByDate"
+											value='week'
 											onChange = { this.handleChange }
 										/> Next 7 Days
 									</label>
 								</li>
 								<li className='m-b-15'>
 									<label>
-										<input 
-											type="radio" 
-											name="filterByDate" 
+										<input
+											type="radio"
+											name="filterByDate"
 											value='fortnight'
-											onChange = { this.handleChange } 
+											onChange = { this.handleChange }
 										/> Next 15 Days
 									</label>
 								</li>
 								<li className='m-b-15'>
 									<label>
-										<input 
-											type="radio" 
-											name="filterByDate" 
+										<input
+											type="radio"
+											name="filterByDate"
 											value='month'
-											onChange = { this.handleChange } 
+											onChange = { this.handleChange }
 										/> Next 30 Days
 									</label>
 								</li>
 								<li className='m-b-15'>
 									<label className='m-b-15'>
-										<input 
-											type="radio" 
-											name="filterByDate" 
-											value='custom' 
+										<input
+											type="radio"
+											name="filterByDate"
+											value='custom'
 											onChange = { this.handleChange }
 										/> Custom Date Range
 									</label>
 									<div className={ this.state.filterByDate !== 'custom' ? "DataFilters__datewrap App__hidden flexbox flex-d-column p-l-25" : "DataFilters__datewrap flexbox flex-d-column p-l-25" } >
 										<label className="flexbox m-b-10">
 											<span className="DataFilters__datewraplabel m-r-5">Start Date: </span>
-											<input 
-												type="date" 
-												name="filterStartDate" 
+											<input
+												type="date"
+												name="filterStartDate"
 												placeholder="Choose a start date"
 												onChange = { this.handleChange }
 											 />
 										</label>
+										{ errorStartDate ? <span className="App__errormsg">Please choose a start date!</span> : null }
 										<label className="flexbox m-b-10">
 											<span className="DataFilters__datewraplabel m-r-5">End Date: </span>
-											<input 
-												type="date" 
-												name="filterEndDate" 
-												placeholder="Choose an end date" 
+											<input
+												type="date"
+												name="filterEndDate"
+												placeholder="Choose an end date"
 												onChange = { this.handleChange }
 											/>
 										</label>
+										{ errorEndDate ? <span className="App__errormsg">Please choose an end date!</span> : null }
+										{ errorIncorrectEndDate ? <span className="App__errormsg">Start date cannot be greater than end date!</span> : null }
 									</div>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<hr className='m-t-15 m-b-30' />
-					<button 
-						className="App__btn App__btn--primary" 
+					<button
+						className="App__btn App__btn--primary"
 						type="Submit"
 						onClick = {this.applyFilters}
 					>Apply Filters</button>
