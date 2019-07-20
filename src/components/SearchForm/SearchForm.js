@@ -86,6 +86,7 @@ class SearchForm extends Component{
 		if(frmForce.length > 0 && frmNBD.length > 0){
 			this.props.togglePreloader(true);
 			this.props.resetFilters();
+			this.props.hideDataFilters();
 			this.getDataFromAPI(
         		this.apiEndpoints.primary + this.apiEndpoints.events.replace(/{force}/, frmForce).replace(/{nbd}/, frmNBD),
         		(resp) => {

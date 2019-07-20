@@ -37,6 +37,7 @@ class AppSearch extends Component{
 			            setForceChoice = { setForceChoice }
 						setNBDChoice = { setNBDChoice }
 						resetFilters = { resetFilters }
+						hideDataFilters = { this.hideDataFilters }
 		          	/>
 		          	{
 			            ( (!!eventsData && eventsData.length > 0) || (!!backupEventsData && backupEventsData.length > 0)) ?
