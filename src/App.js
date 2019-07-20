@@ -25,6 +25,7 @@ class App extends Component{
     this.setForceChoice = this.setForceChoice.bind(this);
     this.setNBDChoice = this.setNBDChoice.bind(this);
     this.setApplyFilters = this.setApplyFilters.bind(this);
+    this.resetFilters = this.resetFilters.bind(this);
   }
   apiEndpoints = {
     primary: '//data.police.uk/api',
@@ -65,9 +66,10 @@ class App extends Component{
         cb();
     });
   }
-  getEventsData () {
-    return this.state.dataEvents;
+  getEventsData ( returnBackup ) {
+    return returnBackup ? this.state.preFilterDataEvents : this.state.dataEvents;
   }
+
   filterDataByDate( choice ) {
     console.log("filtering by", choice);
     const diff =  (choice === 'today') ? 0
@@ -153,8 +155,18 @@ class App extends Component{
     if(typeof cb !== 'undefined')
         cb();
   }
+  resetFilters ( cb ){
+    this.setState( 
+      (cst) => ({
+        dataEvents: cst.preFilterDataEvents,
+        preFilterDataEvents: false,
+        filters:'',
+        filterApplied: false
+      })
+    )
+  }
   render(){
-    const { dataEvents, preloading, eventTypes, selectedForce, selectedNBD } = this.state;
+    const { dataEvents, preloading, eventTypes, selectedForce, selectedNBD, filterApplied } = this.state;
     return (
     <div className={ (!!dataEvents) ? 'App instantiated' : 'App uninstantiated'} >
       <Preloader preloading = { preloading } />
@@ -167,6 +179,8 @@ class App extends Component{
         setNBDChoice = { this.setNBDChoice }
         getEventsData = { this.getEventsData }
         setApplyFilters = { this.setApplyFilters }
+        resetFilters = {this.resetFilters}
+        filterApplied = { filterApplied }
       />
       {
         (!!dataEvents) ?

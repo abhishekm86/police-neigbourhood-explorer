@@ -23,9 +23,11 @@ class AppSearch extends Component{
 		});
 	}
 	render(){
-		const { setEventsData, getEventsData, togglePreloader, typeFilters, setForceChoice, setNBDChoice, setApplyFilters } = this.props;
+		const { setEventsData, getEventsData, togglePreloader, typeFilters, setForceChoice, setNBDChoice, setApplyFilters, resetFilters, filterApplied } = this.props;
 		const { filterVisible } = this.state;
 		const eventsData = getEventsData();
+		const backupEventsData = getEventsData(true);
+		console.log(resetFilters);
 		return (
 			<section className='AppSearch'>
 		        <div className="App__container flexbox flex-ai-center">
@@ -37,14 +39,18 @@ class AppSearch extends Component{
 						setNBDChoice = { setNBDChoice }
 		          	/>
 		          	{
-			            ( !!eventsData && eventsData.length > 0) ?
+			            ( (!!eventsData && eventsData.length > 0) || (!!backupEventsData && backupEventsData.length > 0)) ?
 			            	<React.Fragment>
-			            		<FilterControls visible={filterVisible} openFilterHandler={this.toggleDataFilters} />
+			            		<FilterControls
+			            			filterApplied = { filterApplied }
+			            			visible = { filterVisible }
+			            			openFilterHandler ={ this.toggleDataFilters }
+			            			resetFilters = { resetFilters }
+		            			/>
 			            		<DataFilters hideDataFilters={ this.hideDataFilters } togglePreloader = { togglePreloader } setApplyFilters = {setApplyFilters} typeFilters = { typeFilters } closeFilterHandler = { this.hideDataFilters } isOpen = { filterVisible } />
 			            	</React.Fragment>
 		            	: null
 		          	}
-		          	
 		        </div>
 		      </section>
 		);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './FilterControls.scss';
 class FilterControls extends Component{
 	render(){
-		const { visible, openFilterHandler } = this.props;
+		const { visible, openFilterHandler, resetFilters, filterApplied } = this.props;
 		return(
 			<section className="FilterControls flexbox">
 				<button onClick={ openFilterHandler } className={ visible ? 'flexbox App__btn App__btn--active':'flexbox App__btn'}>
@@ -11,9 +11,13 @@ class FilterControls extends Component{
 					</span>
 					Filters
 				</button>
-				<button className="App__btn flexbox">
-					Reset Filters
-				</button>
+				{
+					filterApplied ?
+					<button onClick = { resetFilters } className="App__btn flexbox">
+						Reset Filters
+					</button>
+					: null
+				}
 			</section>
 		)
 	}
