@@ -32,65 +32,6 @@ class App extends Component{
     neighbourhoods: '/{force}/neighbourhoods',
     events: '/{force}/{nbd}/events'
   };
-  dayDataFilters = {
-    'today':( function(t) {
-      var _this = t;
-      return function(){
-        _this.setState((cst)=>( {
-          dataEvents: cst.dataEvents.filter( (evt) =>{
-            if( Moment(evt.start_date).diff(Moment(), 'days') === 0 )
-              return true;
-            else
-              return false;
-          } )
-        }));
-      }
-    })(this),
-    'week':(function(t){
-      var _this = t;
-      return function(){
-        _this.setState((cst)=>( {
-          dataEvents: cst.dataEvents.filter( (evt) =>{
-            if( Moment(evt.start_date).diff(Moment(), 'days') < 8 )
-              return true;
-            else
-              return false;
-          } )
-        }));
-      }
-    })(this),
-    'fortnight':(function(t){
-      var _this = t;
-      return function(){
-        _this.setState((cst)=>( {
-          dataEvents: cst.dataEvents.filter( (evt) =>{
-            if( Moment(evt.start_date).diff(Moment(), 'days') < 16 )
-              return true;
-            else
-              return false;
-          } )
-        }));
-      }
-    })(this),
-    'month':(function(t){
-      var _this = t;
-      return function(){
-        _this.setState((cst)=>( {
-          dataEvents: cst.dataEvents.filter( (evt) =>{
-            if( Moment(evt.start_date).diff(Moment(), 'days') < 31 )
-              return true;
-            else
-              return false;
-          } )
-        }));
-      }
-    })(this),
-    'custom':(function(){
-      return function(){
-        console.log("Filtering by custom")
-      }
-    })()
-  };
   getNewState( cst, root, key, value ) {
     let clonedState = JSON.parse( JSON.stringify( cst[ root ] ) );
     clonedState[key] = value;
@@ -127,49 +68,87 @@ class App extends Component{
   getEventsData () {
     return this.state.dataEvents;
   }
-  filterDataByEvent( evt ) {
-    console.log('Filtering data by ', evt);
+  filterDataByDate( choice ) {
+    console.log("filtering by", choice);
+    const diff =  (choice === 'today') ? 0
+                : (choice === 'week') ? 8
+                : (choice === 'fortnight') ? 16
+                : (choice === 'month') ? 31
+                : false
+    if( !!diff || diff === 0 ) {
+      this.setState( (cst)=>(
+        {
+          dataEvents: cst.dataEvents.filter( (evt) => {
+            if( Moment(evt.start_date).diff(Moment(), 'days') < diff )
+              return true;
+            else
+              return false;
+          }),
+          filterApplied: true
+        }
+      ));
+    } else if( choice === 'custom' ){
+      const { filterStartDate, filterEndDate } = this.state.filters;
+      this.setState( (cst)=>(
+        {
+          dataEvents: cst.dataEvents.filter( (evt) => {
+            if( Moment(evt.start_date).diff(Moment(filterStartDate), 'days') > -1 && Moment(filterEndDate).diff(Moment(evt.start_date), 'days') > -1 )
+              return true;
+            else
+              return false;
+          }),
+          filterApplied: true
+        }
+      ));
+    }
   }
-  setApplyFilters ( filters, cb ) {
-    if(! ( JSON.stringify(this.state.filters) === JSON.stringify(filters) ) ){
-      if(!!this.state.preFilterDataEvents){
+  filterDataByEvent ( choice, cb ) {
+    console.log("filtering by", choice);
+    this.setState( (cst)=>(
+      {
+        dataEvents: cst.dataEvents.filter( (evt) => {
+          if( evt.type === choice )
+            return true;
+          else
+            return false;
+        }),
+        filterApplied: true
+      }
+    ), function(){
+      if(typeof cb !== 'undefined')
+        cb();
+    });
+  }
+  backupEventsData( cb ){
+    if(!!this.state.preFilterDataEvents){
         this.setState((cst)=>({
           dataEvents: cst.preFilterDataEvents
         }), function(){
-          this.setState((cst)=>({
-            preFilterDataEvents: cst.dataEvents,
-            filters: filters
-          }), () => {
-            const {filterByDate, filterByType } = this.state.filters;
-            if( filterByDate !== 'undefined' && filterByType !== 'undefined' && filterByDate.length > 0 && filterByType.length > 0 ) {
-              console.log("Both are set!")
-            } else if(filterByDate !== 'undefined' && filterByDate.length > 0){
-              if( typeof this.dayDataFilters[filterByDate]!== 'undefined' )
-                this.dayDataFilters[filterByDate]();
-            } else if( filterByType !== 'undefined' && filterByType.length > 0 ) {
-              console.log("Event related set!")
-              this.filterDataByEvent( filterByType );
-            }
-          });
-        })  
-      } else{
+          if(typeof cb !== 'undefined')
+            cb();
+        })
+      } else {
+        if(typeof cb !== 'undefined')
+          cb();
+      }
+  }
+  setApplyFilters ( filters, cb ) {
+    if(! ( JSON.stringify(this.state.filters) === JSON.stringify(filters) ) ){
+      this.backupEventsData( () => {
         this.setState((cst)=>({
           preFilterDataEvents: cst.dataEvents,
           filters: filters
         }), () => {
           const {filterByDate, filterByType } = this.state.filters;
           if( filterByDate !== 'undefined' && filterByType !== 'undefined' && filterByDate.length > 0 && filterByType.length > 0 ) {
-            console.log("Both are set!")
+            this.filterDataByDate( filterByDate, this.filterDataByEvent( filterByType ));
           } else if(filterByDate !== 'undefined' && filterByDate.length > 0){
-            if( typeof this.dayDataFilters[filterByDate]!== 'undefined' )
-              this.dayDataFilters[filterByDate]();
+            this.filterDataByDate(filterByDate);
           } else if( filterByType !== 'undefined' && filterByType.length > 0 ) {
-            console.log("Event related set!")
             this.filterDataByEvent( filterByType );
           }
         });
-      }
-      
+      } );
     }
     if(typeof cb !== 'undefined')
         cb();

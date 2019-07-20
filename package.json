@@ -2,10 +2,11 @@
   "name": "police-neighbourhood-explorer",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://abhishekm86.github.io/police-neigbourhood-explorer",
+  "homepage": "http://abhishekm86.github.io/police-neigbourhood-explorer",
   "dependencies": {
     "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-detect-offline": "^2.4.0",
     "react-dom": "^16.8.6",
     "react-html-parser": "^2.0.2",
     "react-scripts": "3.0.1",
