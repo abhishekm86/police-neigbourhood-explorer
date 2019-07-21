@@ -18,55 +18,65 @@ class DataFilters extends Component{
 		this.resetFilterSelections = this.resetFilterSelections.bind(this);
 	}
 	handleChange( evt ){
-		if(evt.target.name === 'filterStartDate' && evt.target.value.length > 0 )
-			this.setState({errorStartDate: false});
-		if(evt.target.name === 'filterEndDate' && evt.target.value.length > 0 ) {
-			this.setState({errorEndDate: false});
+		if(typeof evt !== 'undefined'){
+			if( evt.target.name === 'filterStartDate' && evt.target.value.length > 0 )
+				this.setState({errorStartDate: false});
+			if( evt.target.name === 'filterEndDate' && evt.target.value.length > 0 ) {
+				this.setState({errorEndDate: false});
+			}
+			this.setState({
+				[evt.target.name] : evt.target.value
+			});
 		}
-		this.setState({
-			[evt.target.name] : evt.target.value
-		});
 	}
 	resetFilterSelections( evt ){
-		evt.preventDefault();
-		const { filters } = this.props;
-		this.setState({
-			filterByType: (filters.filterByType) ? filters.filterByType : '',
-			filterByDate: (filters.filterByDate) ? filters.filterByDate : '',
-			filterStartDate: (filters.filterStartDate) ? filters.filterStartDate : '',
-			filterEndDate: (filters.filterEndDate) ? filters.filterEndDate : '',
-			errorStartDate: false,
-			errorEndDate: false,
-			errorIncorrectEndDate: false
-		})
-		this.props.closeFilterHandler();
-	}
-	applyFilters( evt ) {
-		evt.preventDefault();
-		const { filterByDate, filterEndDate, filterStartDate } = this.state;
-		if( ( filterByDate === 'custom' ) && ( filterStartDate.length === 0 || filterEndDate.length === 0 || Moment(filterEndDate).diff(Moment(filterStartDate), 'days') < 0) ) {
-			if( filterStartDate.length === 0 )
-				this.setState({errorStartDate : true})
-			else
-				this.setState({errorStartDate : false});
-			if( filterEndDate.length === 0 )
-				this.setState({errorEndDate : true});
-			else
-				this.setState({errorEndDate : false});
-			if( Moment(filterEndDate).diff(Moment(filterStartDate), 'days') < 0 ){
-				this.setState({errorIncorrectEndDate: true});
-			}
-		} else {
+		try{
+			evt.preventDefault();
+			const { filters } = this.props;
 			this.setState({
-				errorStartDate : false,
+				filterByType: (filters.filterByType) ? filters.filterByType : '',
+				filterByDate: (filters.filterByDate) ? filters.filterByDate : '',
+				filterStartDate: (filters.filterStartDate) ? filters.filterStartDate : '',
+				filterEndDate: (filters.filterEndDate) ? filters.filterEndDate : '',
+				errorStartDate: false,
 				errorEndDate: false,
 				errorIncorrectEndDate: false
-			});
-			this.props.togglePreloader(true);
-			this.props.setApplyFilters( this.state, ()=>{
-				this.props.togglePreloader(false);
-				this.props.hideDataFilters();
-			} );
+			})
+			this.props.closeFilterHandler();
+		} catch (ex) {
+			console.error("Error caught resetting filters selections: ", ex);
+		}
+	}
+	applyFilters( evt ) {
+		try{
+			evt.preventDefault();
+			const { filterByDate, filterEndDate, filterStartDate } = this.state;
+			if( ( filterByDate === 'custom' ) && ( filterStartDate.length === 0 || filterEndDate.length === 0 || Moment(filterEndDate).diff(Moment(filterStartDate), 'days') < 0) ) {
+				if( filterStartDate.length === 0 )
+					this.setState({errorStartDate : true})
+				else
+					this.setState({errorStartDate : false});
+				if( filterEndDate.length === 0 )
+					this.setState({errorEndDate : true});
+				else
+					this.setState({errorEndDate : false});
+				if( Moment(filterEndDate).diff(Moment(filterStartDate), 'days') < 0 ){
+					this.setState({errorIncorrectEndDate: true});
+				}
+			} else {
+				this.setState({
+					errorStartDate : false,
+					errorEndDate: false,
+					errorIncorrectEndDate: false
+				});
+				this.props.togglePreloader(true);
+				this.props.setApplyFilters( this.state, ()=>{
+					this.props.togglePreloader(false);
+					this.props.hideDataFilters();
+				} );
+			}
+		} catch (ex) {
+			console.error("Error caught applying filters in datafilters: ", ex);
 		}
 	}
 	render(){

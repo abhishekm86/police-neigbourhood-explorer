@@ -6,7 +6,7 @@ class EventsList extends Component{
 	render(){
 		const { eventsData, selectedForce, selectedNBD } =  this.props;
 		const dataLength = eventsData.length;
-		const listing = (function(_this){
+		const listing = (()=>{
 			if( dataLength > 0 ) {
 				return (
 					<React.Fragment>
@@ -21,7 +21,7 @@ class EventsList extends Component{
 			} else{
 				return <NoEvents force={selectedForce} nbd={selectedNBD} />
 			}
-		})(this);
+		})();
 		return(
 			<main className='EventsList'>
 				<div className="App__container">{ listing }</div>

@@ -32,39 +32,47 @@ class App extends Component{
     this.resetFilters = this.resetFilters.bind(this);
   }
   togglePreloader( st ){
-    this.setState({
-      preloading: st
-    })
+    if(typeof st !== 'undefined'){
+      this.setState({
+        preloading: st
+      });
+    }
   };
   setForceChoice( selection ){
-    this.setState({
-      selectedForce: selection
-    });
+    if(typeof selection !== 'undefined'){
+      this.setState({
+        selectedForce: selection
+      });
+    }
   }
   setNBDChoice( selection ){
-    this.setState({
-      selectedNBD: selection
-    });
+    if(typeof selection !== 'undefined'){
+      this.setState({
+        selectedNBD: selection
+      });
+    }
   }
   setEventsData ( data, cb ) {
-    this.setState({
-      dataEvents: data,
-      init: true
-    }, function(){
-      this.setState(
-        ( cst ) => ( {
-          eventTypes: [ ...new Set(cst.dataEvents.map( evt => evt.type ))]
-        } )
-      );
-      if(typeof cb !== 'undefined')
-        cb();
-    });
+    if(typeof data !== 'undefined'){
+      this.setState({
+        dataEvents: data,
+        init: true
+      }, function(){
+        this.setState(
+          ( cst ) => ( {
+            eventTypes: [ ...new Set(cst.dataEvents.map( evt => evt.type ))]
+          } )
+        );
+        if(typeof cb !== 'undefined')
+          cb();
+      });
+    }
   }
   getEventsData ( returnBackup ) {
     return returnBackup ? this.state.preFilterDataEvents : this.state.dataEvents;
   }
   filterDataByDate( choice ) {
-    console.log("Filtering events by", choice);
+    console.info("Filtering events by", choice);
     const diff =  (choice === 'today') ? 0
                 : (choice === 'week') ? 8
                 : (choice === 'fortnight') ? 16
@@ -98,21 +106,23 @@ class App extends Component{
     }
   }
   filterDataByEvent ( choice, cb ) {
-    console.log("Filtering events by", choice);
-    this.setState( (cst)=>(
-      {
-        dataEvents: cst.dataEvents.filter( (evt) => {
-          if( evt.type === choice )
-            return true;
-          else
-            return false;
-        }),
-        filterApplied: true
-      }
-    ), function(){
-      if(typeof cb !== 'undefined')
-        cb();
-    });
+    if(typeof choice !== 'undefined'){
+      console.info("Filtering events by", choice);
+      this.setState( (cst)=>(
+        {
+          dataEvents: cst.dataEvents.filter( (evt) => {
+            if( evt.type === choice )
+              return true;
+            else
+              return false;
+          }),
+          filterApplied: true
+        }
+      ), function(){
+        if(typeof cb !== 'undefined')
+          cb();
+      });
+    }
   }
   backupEventsData( cb ){
     if(!!this.state.preFilterDataEvents){
@@ -128,27 +138,33 @@ class App extends Component{
       }
   }
   setApplyFilters ( filters, cb ) {
-    if(! ( JSON.stringify(this.state.filters) === JSON.stringify(filters) ) ){
-      this.backupEventsData( () => {
-        this.setState((cst)=>({
-          preFilterDataEvents: cst.dataEvents,
-          filters: filters
-        }), () => {
-          const {filterByDate, filterByType } = this.state.filters;
-          if( filterByDate !== 'undefined' && filterByType !== 'undefined' && filterByDate.length > 0 && filterByType.length > 0 ) {
-            this.filterDataByDate( filterByDate, this.filterDataByEvent( filterByType ));
-          } else if(filterByDate !== 'undefined' && filterByDate.length > 0){
-            this.filterDataByDate(filterByDate);
-          } else if( filterByType !== 'undefined' && filterByType.length > 0 ) {
-            this.filterDataByEvent( filterByType );
-          }
-          new Noty({
-              timeout: 3000,
-              text: 'Selected Filters applied successfully!',
-              type: 'success',
-          }).show();
-        });
-      } );
+    if(typeof filters !== 'undefined'){
+      try{
+        if(! ( JSON.stringify(this.state.filters) === JSON.stringify(filters) ) ){
+          this.backupEventsData( () => {
+            this.setState((cst)=>({
+              preFilterDataEvents: cst.dataEvents,
+              filters: filters
+            }), () => {
+              const {filterByDate, filterByType } = this.state.filters;
+              if( filterByDate !== 'undefined' && filterByType !== 'undefined' && filterByDate.length > 0 && filterByType.length > 0 ) {
+                this.filterDataByDate( filterByDate, this.filterDataByEvent( filterByType ));
+              } else if(filterByDate !== 'undefined' && filterByDate.length > 0){
+                this.filterDataByDate(filterByDate);
+              } else if( filterByType !== 'undefined' && filterByType.length > 0 ) {
+                this.filterDataByEvent( filterByType );
+              }
+              new Noty({
+                  timeout: 3000,
+                  text: 'Selected Filters applied successfully!',
+                  type: 'success',
+              }).show();
+            });
+          } );
+        }
+      }catch(ex){
+        console.error("Error caught applying filters: ", ex);
+      }
     }
     if(typeof cb !== 'undefined')
         cb();
@@ -164,7 +180,7 @@ class App extends Component{
     );
   }
   render(){
-    const {dataEvents, preloading, eventTypes, selectedForce, selectedNBD, filterApplied, filters, init } = this.state;
+    const { dataEvents, preloading, eventTypes, selectedForce, selectedNBD, filterApplied, filters, init } = this.state;
     return (
     <div className={ init ? 'App instantiated' : 'App uninstantiated'} >
       <Preloader preloading = { preloading } />

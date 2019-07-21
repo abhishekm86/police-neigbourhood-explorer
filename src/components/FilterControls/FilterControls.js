@@ -8,13 +8,17 @@ class FilterControls extends Component{
 		super(props);
 		this.resetFilters = this.resetFilters.bind(this);
 	}
-	resetFilters(){
-		new Noty({
-          timeout: 3000,
-          text: 'Filters have been reset!',
-          type: 'success',
-        }).show();
-        this.props.resetFilters();
+	resetFilters () {
+		try{
+			new Noty({
+				timeout: 3000,
+				text: 'Filters have been reset!',
+				type: 'success',
+			}).show();
+			this.props.resetFilters();
+		} catch (ex) {
+			console.error("Error caught resetting filters: ", ex);
+		}
 	}
 	render(){
 		const { visible, openFilterHandler, filterApplied } = this.props;

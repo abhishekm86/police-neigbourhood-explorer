@@ -13,7 +13,11 @@ class UserSelect extends Component{
 		this.setState({
 			[evt.target.name] : evt.target.value
 		}, function () {
-			this.props.updateSelection(this.state)
+			try{
+				this.props.updateSelection(this.state)
+			} catch( ex ) {
+				console.error("Error caught udpating parent selections: ", ex);
+			}
 		});
 	}
 	render(){
