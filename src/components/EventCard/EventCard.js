@@ -22,22 +22,35 @@ class EventCard extends Component{
 		const { title, description, address, type, start_date, end_date } = this.props;
 		return (
 			<div className="EventCard">
-				<p className="EventCard__tag">{type}</p>
+				{
+					(!!type && type.length > 0) ?
+						<p className="EventCard__tag">{type}</p>
+					: null
+				}
 				<h3 className="EventCard__title">{title}</h3>
-				<p className="EventCard__location">
-					<span className="EventCard__locationicon">{this.getLocationIcon(false, 14)}</span>
-					{address}
-				</p>
+				{
+					(!!address && address.length > 0) ?
+						<span className="EventCard__locationicon">{this.getLocationIcon(false, 14)}</span>
+					: null
+				}
 				<div className="EventCard__desc">{ReactHtmlParser(description)}</div>
 				<div className="flexbox flex-d-column">
-					<p className="EventCard__date start flexbox flex-d-column">
-						<span className="EventCard__datelabel">Starts At</span>
-						<span className="datedata">{ Moment(start_date).format('dddd, Do MMMM, YYYY hh:mmA' ) }</span>
-					</p>
-					<p className="EventCard__date end flexbox flex-d-column">
-						<span className="EventCard__datelabel">Ends At</span>
-						<span className="datedata">{ Moment(end_date).format('dddd, Do MMMM, YYYY hh:mmA' ) }</span>
-					</p>
+					{
+						(!!start_date && start_date.length > 0) ?
+							<p className="EventCard__date start flexbox flex-d-column">
+								<span className="EventCard__datelabel">Starts At</span>
+								<span className="datedata">{ Moment(start_date).format('dddd, Do MMMM, YYYY hh:mmA' ) }</span>
+							</p>
+						: null
+					}
+					{
+						(!!end_date && end_date.length > 0) ?
+							<p className="EventCard__date end flexbox flex-d-column">
+								<span className="EventCard__datelabel">Ends At</span>
+								<span className="datedata">{ Moment(end_date).format('dddd, Do MMMM, YYYY hh:mmA' ) }</span>
+							</p>
+						: null
+					}
 				</div>
 			</div>
 		);
