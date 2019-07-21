@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
+import Noty from 'noty';
 import './FilterControls.scss';
+import 'noty/src/noty.scss';
+import 'noty/src/themes/mint.scss';
 class FilterControls extends Component{
+	constructor(props){
+		super(props);
+		this.resetFilters = this.resetFilters.bind(this);
+	}
+	resetFilters(){
+		new Noty({
+          timeout: 3000,
+          text: 'Filters have been reset!',
+          type: 'success',
+        }).show();
+        this.props.resetFilters();
+	}
 	render(){
 		const { visible, openFilterHandler, resetFilters, filterApplied } = this.props;
 		return(
@@ -13,7 +28,7 @@ class FilterControls extends Component{
 				</button>
 				{
 					filterApplied ?
-					<button onClick = { resetFilters } className="App__btn flexbox">
+					<button onClick = { this.resetFilters } className="App__btn flexbox">
 						Reset Filters
 					</button>
 					: null

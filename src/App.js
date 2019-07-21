@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import Moment from 'moment';
+import Noty from 'noty';
 import Preloader from './components/Preloader/Preloader';
 import AppHeader from './components/AppHeader/AppHeader';
 import AppSearch from './components/AppSearch/AppSearch';
 import EventsList from './components/EventsList/EventsList';
+import 'noty/src/noty.scss';
+import 'noty/src/themes/mint.scss';
 import 'reset-css';
 import './App.scss';
 class App extends Component{
@@ -28,17 +31,6 @@ class App extends Component{
     this.setApplyFilters = this.setApplyFilters.bind(this);
     this.resetFilters = this.resetFilters.bind(this);
   }
-  apiEndpoints = {
-    primary: '//data.police.uk/api',
-    forces: '/forces',
-    neighbourhoods: '/{force}/neighbourhoods',
-    events: '/{force}/{nbd}/events'
-  };
-  /*getNewState( cst, root, key, value ) {
-    let clonedState = JSON.parse( JSON.stringify( cst[ root ] ) );
-    clonedState[key] = value;
-    return clonedState;
-  }*/
   togglePreloader( st ){
     this.setState({
       preloading: st
@@ -72,7 +64,7 @@ class App extends Component{
     return returnBackup ? this.state.preFilterDataEvents : this.state.dataEvents;
   }
   filterDataByDate( choice ) {
-    console.log("filtering by", choice);
+    console.log("Filtering events by", choice);
     const diff =  (choice === 'today') ? 0
                 : (choice === 'week') ? 8
                 : (choice === 'fortnight') ? 16
@@ -106,7 +98,7 @@ class App extends Component{
     }
   }
   filterDataByEvent ( choice, cb ) {
-    console.log("filtering by", choice);
+    console.log("Filtering events by", choice);
     this.setState( (cst)=>(
       {
         dataEvents: cst.dataEvents.filter( (evt) => {
@@ -150,6 +142,11 @@ class App extends Component{
           } else if( filterByType !== 'undefined' && filterByType.length > 0 ) {
             this.filterDataByEvent( filterByType );
           }
+          new Noty({
+              timeout: 3000,
+              text: 'Selected Filters applied successfully!',
+              type: 'success',
+          }).show();
         });
       } );
     }
@@ -164,18 +161,10 @@ class App extends Component{
         filters:'',
         filterApplied: false
       })
-    )
+    );
   }
   render(){
-    const {
-      dataEvents,
-      preloading,
-      eventTypes,
-      selectedForce,
-      selectedNBD,
-      filterApplied,
-      filters,
-      init } = this.state;
+    const {dataEvents, preloading, eventTypes, selectedForce, selectedNBD, filterApplied, filters, init } = this.state;
     return (
     <div className={ init ? 'App instantiated' : 'App uninstantiated'} >
       <Preloader preloading = { preloading } />
@@ -194,11 +183,7 @@ class App extends Component{
       />
       {
         (!!dataEvents) ?
-          <EventsList
-            eventsData = { dataEvents }
-            selectedForce = { selectedForce }
-            selectedNBD = { selectedNBD }
-          />
+          <EventsList eventsData = { dataEvents } selectedForce = { selectedForce } selectedNBD = { selectedNBD } />
         : null
       }
     </div>
