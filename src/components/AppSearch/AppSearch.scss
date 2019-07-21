@@ -15,11 +15,11 @@
 		height: 100%;
 	}
 	.App__btn{
+		flex-grow: 1;
 		&:last-child {
 			margin-right: 0;
 		}
 		&icon {
-			height: 100%;
 			display: inline-block;
 			margin-right: 8px;
 		}
