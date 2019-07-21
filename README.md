@@ -1,6 +1,6 @@
 #  Police Neighbourhood Explorer
 
-**Police Neighbourhood Explorer** is a simple application(based on **[UK Police Data](https://data.police.uk/)**) that allows users to explore events for an individual neighbourhood. 
+**[Police Neighbourhood Explorer](https://abhishekm86.github.io/police-neigbourhood-explorer/)** is a simple application(based on **[UK Police Data](https://data.police.uk/)**) that allows users to explore events for an individual neighbourhood. 
 
 A user is able to navigate a list of police forces and neighbourhoods to identify a particular neighbourhood to view details of upcoming events in that neighbourhood.
 
@@ -67,7 +67,8 @@ The following three endpoints are utilised:
 | --------- | --------- | --------- | --------- | --------- |
 | IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions 
 
-
+## Testing
+See the included [Tests Documentation](https://github.com/abhishekm86/police-neigbourhood-explorer/blob/master/Tests-Documentation.pdf) file.
 
 ## License
 MIT License, see the included [License.md](https://github.com/abhishekm86/police-neigbourhood-explorer/blob/master/License.md) file.
