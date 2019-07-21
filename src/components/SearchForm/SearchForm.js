@@ -119,6 +119,10 @@ class SearchForm extends Component{
 						this.props.setForceChoice(this.getHRText(this.state.frmForce, this.state.dataForce))
 						this.props.setNBDChoice(this.getHRText(this.state.frmNBD, this.state.dataNBD))
         				this.props.togglePreloader(false);
+        				/*this.setState({
+        					frmForce:'',
+							frmNBD:''
+        				});*/
         			});
         		},
         		error => {
