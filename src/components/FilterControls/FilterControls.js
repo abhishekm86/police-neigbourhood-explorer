@@ -17,7 +17,7 @@ class FilterControls extends Component{
         this.props.resetFilters();
 	}
 	render(){
-		const { visible, openFilterHandler, resetFilters, filterApplied } = this.props;
+		const { visible, openFilterHandler, filterApplied } = this.props;
 		return(
 			<section className="FilterControls flexbox">
 				<button onClick={ openFilterHandler } className={ visible ? 'flexbox App__btn App__btn--active':'flexbox App__btn'}>
