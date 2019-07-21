@@ -182,27 +182,27 @@ class App extends Component{
   render(){
     const { dataEvents, preloading, eventTypes, selectedForce, selectedNBD, filterApplied, filters, init } = this.state;
     return (
-    <div className={ init ? 'App instantiated' : 'App uninstantiated'} >
-      <Preloader preloading = { preloading } />
-      <AppHeader />
-      <AppSearch
-        typeFilters = { eventTypes }
-        setEventsData = { this.setEventsData }
-        togglePreloader = { this.togglePreloader }
-        setForceChoice = { this.setForceChoice }
-        setNBDChoice = { this.setNBDChoice }
-        getEventsData = { this.getEventsData }
-        setApplyFilters = { this.setApplyFilters }
-        resetFilters = {this.resetFilters}
-        filterApplied = { filterApplied }
-        filters = { filters }
-      />
-      {
-        (!!dataEvents) ?
-          <EventsList eventsData = { dataEvents } selectedForce = { selectedForce } selectedNBD = { selectedNBD } />
-        : null
-      }
-    </div>
+      <div className={ init ? 'App instantiated' : 'App uninstantiated'} >
+        <Preloader preloading = { preloading } />
+        <AppHeader />
+        <AppSearch
+          typeFilters = { eventTypes }
+          setEventsData = { this.setEventsData }
+          togglePreloader = { this.togglePreloader }
+          setForceChoice = { this.setForceChoice }
+          setNBDChoice = { this.setNBDChoice }
+          getEventsData = { this.getEventsData }
+          setApplyFilters = { this.setApplyFilters }
+          resetFilters = {this.resetFilters}
+          filterApplied = { filterApplied }
+          filters = { filters }
+        />
+        {
+          (!!dataEvents) ?
+            <EventsList eventsData = { dataEvents } selectedForce = { selectedForce } selectedNBD = { selectedNBD } />
+          : null
+        }
+      </div>
     );
   }
 }

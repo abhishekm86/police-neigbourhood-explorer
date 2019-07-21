@@ -6,6 +6,7 @@
 	height: 100vh;
 	z-index: 99999;
 	background-color: rgba(0,0,0,0.90);
+	font-family: 'Roboto', sans-serif;
 	&__icon{
 		position: fixed;
 		top: 50%;
@@ -17,5 +18,12 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+	}
+	&__msg{
+		display: inline-block;
+		transform: translate(0, 80px);
+		color: #FFF;
+		text-align: center;
+		line-height: 1.4;
 	}
 }
