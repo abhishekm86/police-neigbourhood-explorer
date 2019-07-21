@@ -11,6 +11,7 @@ class AppSearch extends Component{
 		};
 		this.toggleDataFilters = this.toggleDataFilters.bind(this);
     	this.hideDataFilters = this.hideDataFilters.bind(this);
+    	this.resetFilters = this.resetFilters.bind(this);
 	}
 	toggleDataFilters ( ) {
 		this.setState( (cst) => ({
@@ -22,8 +23,12 @@ class AppSearch extends Component{
 			filterVisible: false
 		});
 	}
+	resetFilters(){
+		this.hideDataFilters();
+		this.props.resetFilters();
+	}
 	render(){
-		const { setEventsData, getEventsData, togglePreloader, typeFilters, setForceChoice, setNBDChoice, setApplyFilters, resetFilters, filterApplied, filters } = this.props;
+		const { setEventsData, getEventsData, togglePreloader, typeFilters, setForceChoice, setNBDChoice, setApplyFilters, filterApplied, filters } = this.props;
 		const { filterVisible } = this.state;
 		const eventsData = getEventsData();
 		const backupEventsData = getEventsData(true);
@@ -36,7 +41,7 @@ class AppSearch extends Component{
 			            togglePreloader = { togglePreloader }
 			            setForceChoice = { setForceChoice }
 						setNBDChoice = { setNBDChoice }
-						resetFilters = { resetFilters }
+						resetFilters = { this.resetFilters }
 						hideDataFilters = { this.hideDataFilters }
 		          	/>
 		          	{
@@ -46,7 +51,7 @@ class AppSearch extends Component{
 			            			filterApplied = { filterApplied }
 			            			visible = { filterVisible }
 			            			openFilterHandler ={ this.toggleDataFilters }
-			            			resetFilters = { resetFilters }
+			            			resetFilters = { this.resetFilters }
 		            			/>
 			            		<DataFilters 
 			            			hideDataFilters={ this.hideDataFilters } 

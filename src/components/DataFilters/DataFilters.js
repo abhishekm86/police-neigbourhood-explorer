@@ -29,9 +29,16 @@ class DataFilters extends Component{
 			});
 		}
 	}
+	componentDidUpdate(){
+		if(!!!this.props.filters && !this.props.isOpen){
+			if(!!this.state.filterByType || !!this.state.filterByDate || !!this.state.filterStartDate || !!this.state.filterEndDate)
+				this.resetFilterSelections();
+		}
+	}
 	resetFilterSelections( evt ){
 		try{
-			evt.preventDefault();
+			if(!!evt)
+				evt.preventDefault();
 			const { filters } = this.props;
 			this.setState({
 				filterByType: (filters.filterByType) ? filters.filterByType : '',
