@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f884926f71bcbdf911c3d8facda0015d",
+    "revision": "2367b62c8beb89014bb28b3e28307356",
     "url": "/police-neigbourhood-explorer/index.html"
   },
   {
@@ -8,16 +8,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/police-neigbourhood-explorer/static/css/2.4eb95d85.chunk.css"
   },
   {
-    "revision": "40607b28d53dd23728df",
-    "url": "/police-neigbourhood-explorer/static/css/main.328fed16.chunk.css"
+    "revision": "fc9acbe0fd599c754be8",
+    "url": "/police-neigbourhood-explorer/static/css/main.d8c52190.chunk.css"
   },
   {
     "revision": "bcb544cd7c745f58339d",
     "url": "/police-neigbourhood-explorer/static/js/2.404b6a3f.chunk.js"
   },
   {
-    "revision": "40607b28d53dd23728df",
-    "url": "/police-neigbourhood-explorer/static/js/main.ffffe175.chunk.js"
+    "revision": "fc9acbe0fd599c754be8",
+    "url": "/police-neigbourhood-explorer/static/js/main.6a2d57f5.chunk.js"
   },
   {
     "revision": "e42a5efb30c1a0bc7fb7",
