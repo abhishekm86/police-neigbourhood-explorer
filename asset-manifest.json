@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/police-neigbourhood-explorer/static/css/main.d8c52190.chunk.css",
-    "main.js": "/police-neigbourhood-explorer/static/js/main.6a2d57f5.chunk.js",
-    "main.js.map": "/police-neigbourhood-explorer/static/js/main.6a2d57f5.chunk.js.map",
+    "main.css": "/police-neigbourhood-explorer/static/css/main.6632aed6.chunk.css",
+    "main.js": "/police-neigbourhood-explorer/static/js/main.6348d927.chunk.js",
+    "main.js.map": "/police-neigbourhood-explorer/static/js/main.6348d927.chunk.js.map",
     "runtime~main.js": "/police-neigbourhood-explorer/static/js/runtime~main.13cc8161.js",
     "runtime~main.js.map": "/police-neigbourhood-explorer/static/js/runtime~main.13cc8161.js.map",
     "static/css/2.4eb95d85.chunk.css": "/police-neigbourhood-explorer/static/css/2.4eb95d85.chunk.css",
     "static/js/2.404b6a3f.chunk.js": "/police-neigbourhood-explorer/static/js/2.404b6a3f.chunk.js",
     "static/js/2.404b6a3f.chunk.js.map": "/police-neigbourhood-explorer/static/js/2.404b6a3f.chunk.js.map",
     "index.html": "/police-neigbourhood-explorer/index.html",
-    "precache-manifest.64b2c68222f2ce40ff59ac6c6db8226a.js": "/police-neigbourhood-explorer/precache-manifest.64b2c68222f2ce40ff59ac6c6db8226a.js",
+    "precache-manifest.67025a94be30afc50c2bbbd963792ab9.js": "/police-neigbourhood-explorer/precache-manifest.67025a94be30afc50c2bbbd963792ab9.js",
     "service-worker.js": "/police-neigbourhood-explorer/service-worker.js",
     "static/css/2.4eb95d85.chunk.css.map": "/police-neigbourhood-explorer/static/css/2.4eb95d85.chunk.css.map",
-    "static/css/main.d8c52190.chunk.css.map": "/police-neigbourhood-explorer/static/css/main.d8c52190.chunk.css.map",
+    "static/css/main.6632aed6.chunk.css.map": "/police-neigbourhood-explorer/static/css/main.6632aed6.chunk.css.map",
     "static/media/AppSearch.scss": "/police-neigbourhood-explorer/static/media/main-banner.ce6d299b.jpg",
     "static/media/main-logo.svg": "/police-neigbourhood-explorer/static/media/main-logo.f62d0a75.svg",
     "static/media/no-events.png": "/police-neigbourhood-explorer/static/media/no-events.6db902d3.png"

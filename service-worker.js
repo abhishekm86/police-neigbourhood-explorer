@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/police-neigbourhood-explorer/precache-manifest.64b2c68222f2ce40ff59ac6c6db8226a.js"
+  "/police-neigbourhood-explorer/precache-manifest.67025a94be30afc50c2bbbd963792ab9.js"
 );
 
 self.addEventListener('message', (event) => {
