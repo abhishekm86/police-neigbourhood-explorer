@@ -5,6 +5,7 @@
 	position: relative;
 	padding: 15px;
 	line-height: 1.4;
+	justify-content: space-between;
 	&__tag{
 		position: absolute;
 		top: 8px;
@@ -36,17 +37,25 @@
 		margin-bottom: 8px;
 		line-height: 1.4;
 		padding-top: 15px;
+		// height: 81px;
+		overflow: hidden;
 	}
 	&__desc{
 		color: #666;
 		margin-bottom: 20px;
 		line-height: 1.5;
 		word-wrap: break-word;
+		// height: 120px;
+		overflow: hidden;
+		& p{
+			display: inline;
+		}
 	}
 	&__location{
 		margin-bottom: 15px;
 		color:#39c;
-		line-height: 1.6;		
+		line-height: 1.4;	
+		font-size: 0.938rem;	
 		&icon{
 			width: 16px;
 			margin-right: 4px;

@@ -28,42 +28,50 @@ class EventCard extends Component{
 	render(){
 		const { title, description, address, type, start_date, end_date } = this.props;
 		return (
-			<div className="EventCard">
+			<div className="EventCard flexbox flex-d-column">
 				{
 					(!!type && type.length > 0) ?
 						<p className="EventCard__tag">{type}</p>
 					: null
 				}
-				<h3 className="EventCard__title">{title}</h3>
-				{
-					(!!address && address.length > 0) ? 
-					<p className="EventCard__location flexbox flex-d-row">
-						<span className="EventCard__locationicon">{this.getLocationIcon(false, 14)}</span>
-						{ ReactHtmlParser(address) }</p>						
-					: null
-				}
-				<div className="EventCard__desc">{ReactHtmlParser(description)}</div>
-				<div className="flexbox flex-d-column">
+				<div className="EventCard__sectiontop">
+					<h3 className="EventCard__title">{title}</h3>
 					{
-						(!!start_date && start_date.length > 0) ?
-							<p className="EventCard__date start flexbox flex-d-column">
-								<span className="EventCard__datelabel flexbox flex-d-row">
-									<span className="EventCard__dateicon">{this.getCalendarIcon(false, 14)}</span>Starts At
-								</span>
-								<span className="EventCard__datedata">{ Moment(start_date).format('dddd, Do MMMM, YYYY' ) } at { Moment(start_date).format('hh:mmA' ) }</span>
-							</p>
+						(!!address && address.length > 0) ?
+						<p className="EventCard__location flexbox flex-d-row">
+							<span className="EventCard__locationicon">{this.getLocationIcon(false, 14)}</span>
+							{ ReactHtmlParser(address) }</p>
 						: null
 					}
 					{
-						(!!end_date && end_date.length > 0) ?
-							<p className="EventCard__date end flexbox flex-d-column">
-								<span className="EventCard__datelabel flexbox flex-d-row">
-									<span className="EventCard__dateicon">{this.getCalendarIcon(false, 14)}</span>Ends At
-								</span>
-								<span className="EventCard__datedata">{ Moment(end_date).format('dddd, Do MMMM, YYYY' ) } at { Moment(start_date).format('hh:mmA' ) }</span>
-							</p>
+						(!!description && description.length > 0) ?
+							<div className="EventCard__desc">{ReactHtmlParser(description)}</div>
 						: null
 					}
+				</div>
+				<div className="EventCard__sectionbottom">
+					<div className="flexbox flex-d-column">
+						{
+							(!!start_date && start_date.length > 0) ?
+								<p className="EventCard__date start flexbox flex-d-column">
+									<span className="EventCard__datelabel flexbox flex-d-row">
+										<span className="EventCard__dateicon">{this.getCalendarIcon(false, 14)}</span>Starts At
+									</span>
+									<span className="EventCard__datedata">{ Moment(start_date).format('dddd, Do MMMM, YYYY' ) } at { Moment(start_date).format('hh:mmA' ) }</span>
+								</p>
+							: null
+						}
+						{
+							(!!end_date && end_date.length > 0) ?
+								<p className="EventCard__date end flexbox flex-d-column">
+									<span className="EventCard__datelabel flexbox flex-d-row">
+										<span className="EventCard__dateicon">{this.getCalendarIcon(false, 14)}</span>Ends At
+									</span>
+									<span className="EventCard__datedata">{ Moment(end_date).format('dddd, Do MMMM, YYYY' ) } at { Moment(start_date).format('hh:mmA' ) }</span>
+								</p>
+							: null
+						}
+					</div>
 				</div>
 			</div>
 		);
